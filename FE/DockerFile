@@ -1,0 +1,14 @@
+# Use official Node.js v23 image
+FROM node:23
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 8081
+
+# Vite needs --host to be accessible from outside container
+CMD ["npm", "run", "dev", "--", "--host"]
